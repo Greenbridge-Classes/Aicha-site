@@ -1,0 +1,36 @@
+/* general */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fffaf5;
+}
+
+/* navbar */
+.navbar {
+    border-radius: 0 0 15px 15px;
+}
+
+/* cards */
+.card {
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* buttons */
+.btn {
+    border-radius: 20px;
+}
+
+/* headings */
+h1, h2 {
+    font-weight: bold;
+}
+
+/* cart list */
+.list-group-item {
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
