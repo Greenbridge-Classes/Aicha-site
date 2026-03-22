@@ -9,6 +9,13 @@ body {
     border-radius: 0 0 15px 15px;
 }
 
+/* hero section */
+.hero {
+    min-height: 90vh;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    padding: 50px 0;
+}
+
 /* cards */
 .card {
     border-radius: 15px;
@@ -16,7 +23,24 @@ body {
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+}
+
+/* product card */
+.product-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
 }
 
 /* buttons */
