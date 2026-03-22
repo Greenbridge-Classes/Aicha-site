@@ -1,12 +1,31 @@
-/* general */
+/*  GENERAL */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #fffaf5;
+    background: linear-gradient(to right, #f8fbff, #fff5f5);
+    color: #333;
 }
 
-/* navbar */
+/*  NAVBAR */
 .navbar {
     border-radius: 0 0 15px 15px;
+    background: linear-gradient(90deg, #0d6efd, #dc3545); /* blue → red */
+}
+
+.navbar .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar .btn {
+    background-color: white;
+    color: #0d6efd;
+    border: none;
+    font-weight: 500;
+}
+
+.navbar .btn:hover {
+    background-color: #f1f1f1;
 }
 
 /* hero section */
@@ -16,45 +35,99 @@ body {
     padding: 50px 0;
 }
 
-/* cards */
+
+/* CARDS */
 .card {
     border-radius: 15px;
-    transition: transform 0.2s ease;
+    border: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    transition: 0.3s ease;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* product card */
-.product-card {
-    border-radius: 15px;
-    overflow: hidden;
-    transition: 0.3s;
+/* Card titles */
+.card h5 {
+    color: #0d6efd; /* blue */
 }
 
-.product-card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-.product-card:hover {
-    transform: translateY(-8px);
-}
-
-/* buttons */
+/* BUTTONS*/
 .btn {
     border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-/* headings */
-h1, h2 {
+/* Primary buttons (blue) */
+.btn-primary, .btn-success {
+    background: linear-gradient(90deg, #0d6efd, #0a58ca);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover, .btn-success:hover {
+    background: linear-gradient(90deg, #0a58ca, #084298);
+}
+
+/* Danger buttons (red) */
+.btn-danger {
+    background: linear-gradient(90deg, #dc3545, #b02a37);
+    border: none;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(90deg, #b02a37, #842029);
+}
+
+/*  HEADINGS */
+h1, h2, h4 {
     font-weight: bold;
+    color: #0d6efd; /* blue theme */
 }
 
-/* cart list */
+/* Accent underline for headings */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #dc3545; /* red accent */
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+/* CART LIST */
 .list-group-item {
     border-radius: 10px;
     margin-bottom: 10px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/*TOTAL PRICE (cart page) */
+#total-price {
+    color: #dc3545; /* red for emphasis */
+    font-weight: bold;
+}
+
+/*  FOOTER */
+footer {
+    background: linear-gradient(90deg, #0d6efd, #dc3545);
+    color: white;
+}
+
+footer small {
+    color: white;
+}
+
+/* SMALL ANIMATIONS */
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.2s ease-in-out;
 }

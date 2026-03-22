@@ -11,44 +11,125 @@
 
 <body>
 
-<!-- navbar -->
+<!-- Navbar -->
 <nav class="navbar navbar-light bg-light shadow-sm">
   <div class="container">
     <a href="index.html" class="navbar-brand fw-bold">Ai-Cha 🍦</a>
-    <button class="btn btn-success" onclick="viewCart()">Cart 🛒 (<span id="cart-count">0</span>)</button>
+    <button class="btn btn-success" onclick="viewCart()">
+        Cart 🛒 (<span id="cart-count">0</span>)
+    </button>
   </div>
 </nav>
 
-<!-- menu section -->
+<!-- Menu Section -->
 <div class="container py-5">
-    <h2 class="text-center mb-4">Our Menu</h2>
-      <div class="container py-3 text-center">
-        <button class="btn btn-outline-primary m-2">All</button>
-        <button class="btn btn-outline-primary m-2">Milk Tea</button>
-        <button class="btn btn-outline-primary m-2">Ice Cream</button>
-     </div>
+    <h2 class="text-center mb-2">Our Menu</h2>
+    <p class="text-center text-muted mb-5">
+        Explore our refreshing drinks and delicious treats.
+    </p>
 
-    <div class="row">
-       
-       <div class="col-md-4 col-sm-6 mb-4">
-         <div class="card product-card shadow-sm h-100">
+    <!-- 🧋 Drinks Category -->
+    <h4 class="mb-3">🧋 Drinks</h4>
+    <div class="row g-4 mb-5">
 
-           <img src="images/tea.jpg" class="card-img-top">
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Milk Tea">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Classic Milk Tea</h5>
+                    <p class="text-muted small">Creamy tea with chewy boba pearls.</p>
+                    <p class="fw-bold text-success">UGX 10,000</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Milk Tea', 10000)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
 
-           <div class="card-body text-center">
-              <h5 class="fw-bold">Milk Tea</h5>
-              <p class="text-muted">Delicious creamy tea</p>
-              <h6 class="text-success">UGX 10,000</h6>
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Fruit Tea">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Fruit Tea</h5>
+                    <p class="text-muted small">Refreshing tea infused with fruity flavors.</p>
+                    <p class="fw-bold text-success">UGX 9,000</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Fruit Tea', 9000)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
 
-              <button class="btn btn-success w-100 mt-2"
-                onclick="addToCart('Milk Tea', 10000)">
-                Add to Cart
-              </button>
-          </div>
+    </div>
 
-          </div>
-     </div>
-   </div>
+    <!-- 🍦 Ice Cream Category -->
+    <h4 class="mb-3">🍦 Ice Cream</h4>
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Vanilla Ice Cream">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Vanilla Ice Cream</h5>
+                    <p class="text-muted small">Classic smooth vanilla flavor.</p>
+                    <p class="fw-bold text-success">UGX 8,000</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Vanilla Ice Cream', 8000)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Chocolate Ice Cream">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Chocolate Ice Cream</h5>
+                    <p class="text-muted small">Rich and indulgent chocolate flavor.</p>
+                    <p class="fw-bold text-success">UGX 8,500</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Chocolate Ice Cream', 8500)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ☕ Coffee Category -->
+    <h4 class="mb-3">☕ Coffee</h4>
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Cappuccino">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Cappuccino</h5>
+                    <p class="text-muted small">Smooth espresso with steamed milk foam.</p>
+                    <p class="fw-bold text-success">UGX 7,000</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Cappuccino', 7000)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100">
+                <img src="" class="card-img-top" alt="Latte">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Latte</h5>
+                    <p class="text-muted small">Rich espresso blended with creamy milk.</p>
+                    <p class="fw-bold text-success">UGX 7,500</p>
+                    <button class="btn btn-success w-100" onclick="addToCart('Latte', 7500)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 <script src="js/script.js"></script>

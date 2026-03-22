@@ -11,7 +11,9 @@ function addToCart(name, price) {
     cart.push({ name: name, price: price });
     saveCart();
     updateCartCount();
-    alert(name + " added to cart!");
+
+    // Better feedback than plain alert
+    alert(`${name} has been added to your cart 🛒`);
 }
 
 // update cart count in navbar
@@ -31,6 +33,7 @@ function viewCart() {
 function displayCart() {
     let cartItems = document.getElementById("cart-items");
     let totalPrice = document.getElementById("total-price");
+    let emptyMessage = document.getElementById("empty-message");
 
     // stop if not on cart page
     if (!cartItems || !totalPrice) return;
@@ -38,13 +41,26 @@ function displayCart() {
     cartItems.innerHTML = "";
     let total = 0;
 
+    if (cart.length === 0) {
+        if (emptyMessage) emptyMessage.classList.remove("d-none");
+        totalPrice.innerText = "";
+        return;
+    } else {
+        if (emptyMessage) emptyMessage.classList.add("d-none");
+    }
+
     cart.forEach((item, index) => {
         let li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
 
         li.innerHTML = `
-            ${item.name}
-            <span>UGX ${item.price}</span>
+            <div>
+                <strong>${item.name}</strong><br>
+                <small class="text-muted">UGX ${item.price}</small>
+            </div>
+            <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">
+                ✖
+            </button>
         `;
 
         cartItems.appendChild(li);
@@ -54,50 +70,18 @@ function displayCart() {
     totalPrice.innerText = "Total: UGX " + total;
 }
 
-// clear cart
+// Clear cart
 function clearCart() {
-    cart = [];
-    saveCart();
-    displayCart();
-    updateCartCount();
-}
+    if (cart.length === 0) return;
 
-// place order via WhatsApp
-function placeOrder() {
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let location = document.getElementById("location").value;
-
-    if (!name || !phone || !location) {
-        alert("Please fill all fields");
-        return;
+    if (confirm("Are you sure you want to clear your cart?")) {
+        cart = [];
+        saveCart();
+        displayCart();
+        updateCartCount();
     }
-
-    let message = "New Order:\n\n";
-
-    let total = 0;
-
-    cart.forEach(item => {
-        message += `${item.name} - UGX ${item.price}\n`;
-        total += item.price;
-    });
-
-    message += `\nTotal: UGX ${total}\n\n`;
-    message += `Customer Name: ${name}\n`;
-    message += `Phone: ${phone}\n`;
-    message += `Location: ${location}`;
-
-    let whatsappNumber = "256780770671";
-
-    let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
 }
 
-function goToCheckout() {
-    window.location.href = "checkout.html";
-}
-
-// run when page loads
+// Run when page loads
 updateCartCount();
 displayCart();
