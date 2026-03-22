@@ -1,12 +1,12 @@
-// Load cart from localStorage
+// load cart from localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// SAVE cart to localStorage
+// save cart to localStorage
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Add item to cart
+// add item to cart
 function addToCart(name, price) {
     cart.push({ name: name, price: price });
     saveCart();
@@ -16,7 +16,7 @@ function addToCart(name, price) {
     alert(`${name} has been added to your cart 🛒`);
 }
 
-// Update cart count in navbar
+// update cart count in navbar
 function updateCartCount() {
     let count = document.getElementById("cart-count");
     if (count) {
@@ -24,18 +24,18 @@ function updateCartCount() {
     }
 }
 
-// Go to cart page
+// go to cart page
 function viewCart() {
     window.location.href = "cart.html";
 }
 
-// Display items in cart page
+// display items in cart page
 function displayCart() {
     let cartItems = document.getElementById("cart-items");
     let totalPrice = document.getElementById("total-price");
     let emptyMessage = document.getElementById("empty-message");
 
-    // Stop if not on cart page
+    // stop if not on cart page
     if (!cartItems || !totalPrice) return;
 
     cartItems.innerHTML = "";
