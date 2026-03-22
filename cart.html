@@ -5,34 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart - Ai-Cha</title>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-<!-- navbar -->
+<!-- Navbar -->
 <nav class="navbar navbar-light bg-light shadow-sm">
   <div class="container">
     <a href="index.html" class="navbar-brand fw-bold">Ai-Cha 🍦</a>
-    <a href="menu.html" class="btn btn-primary">Back to Menu</a>
+    <a href="menu.html" class="btn btn-outline-primary">← Back to Menu</a>
   </div>
 </nav>
 
-<!-- cart Section -->
+<!-- Cart Section -->
 <div class="container py-5">
-    <h2 class="text-center mb-4">Your Cart 🛒</h2>
+    
+    <!-- Title -->
+    <h2 class="text-center mb-2">Your Cart 🛒</h2>
+    <p class="text-center text-muted mb-4">
+        Review your selected items before checkout.
+    </p>
 
-    <ul id="cart-items" class="list-group mb-3"></ul>
+    <!-- Cart Items -->
+    <ul id="cart-items" class="list-group mb-3 shadow-sm"></ul>
 
-    <h4 id="total-price" class="text-end"></h4>
+    <!-- Empty Cart Message -->
+    <p id="empty-message" class="text-center text-muted d-none">
+        Your cart is currently empty. Go back to the menu to add items 🍹
+    </p>
 
-    <div class="text-end">
-        <button class="btn btn-success">Checkout</button>
-        <button class="btn btn-danger mt-2" onclick="clearCart()">Clear Cart</button>
+    <!-- Total Price -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Total:</h5>
+        <h4 id="total-price" class="mb-0 text-success fw-bold"></h4>
     </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-success px-4">
+            Proceed to Checkout
+        </button>
+        <button class="btn btn-danger" onclick="clearCart()">
+            Clear Cart
+        </button>
+    </div>
+
+    <!-- Extra Info -->
+    <div class="mt-4 text-end text-muted small">
+        <p class="mb-1">✔ Secure checkout</p>
+        <p class="mb-1">✔ Freshly prepared on order</p>
+        <p>✔ Delivery available within your area</p>
+    </div>
+
 </div>
 
+<!-- Footer -->
+<footer class="bg-light text-center py-3 mt-5 border-top">
+    <small class="text-muted">
+        © 2026 Ai-Cha | Ice Cream • Boba • Coffee ☕
+    </small>
+</footer>
+
+<!-- JS -->
 <script src="js/script.js"></script>
+
 </body>
 </html>

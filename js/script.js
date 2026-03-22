@@ -11,7 +11,9 @@ function addToCart(name, price) {
     cart.push({ name: name, price: price });
     saveCart();
     updateCartCount();
-    alert(name + " added to cart!");
+
+    // Better feedback than plain alert
+    alert(`${name} has been added to your cart 🛒`);
 }
 
 // Update cart count in navbar
@@ -31,6 +33,7 @@ function viewCart() {
 function displayCart() {
     let cartItems = document.getElementById("cart-items");
     let totalPrice = document.getElementById("total-price");
+    let emptyMessage = document.getElementById("empty-message");
 
     // Stop if not on cart page
     if (!cartItems || !totalPrice) return;
@@ -38,28 +41,53 @@ function displayCart() {
     cartItems.innerHTML = "";
     let total = 0;
 
+    if (cart.length === 0) {
+        if (emptyMessage) emptyMessage.classList.remove("d-none");
+        totalPrice.innerText = "";
+        return;
+    } else {
+        if (emptyMessage) emptyMessage.classList.add("d-none");
+    }
+
     cart.forEach((item, index) => {
         let li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
 
         li.innerHTML = `
-            ${item.name}
-            <span>UGX ${item.price}</span>
+            <div>
+                <strong>${item.name}</strong><br>
+                <small class="text-muted">UGX ${item.price}</small>
+            </div>
+            <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">
+                ✖
+            </button>
         `;
 
         cartItems.appendChild(li);
         total += item.price;
     });
 
-    totalPrice.innerText = "Total: UGX " + total;
+    totalPrice.innerText = "Total: UGX " + total.toLocaleString();
+}
+
+// Remove single item
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    displayCart();
+    updateCartCount();
 }
 
 // Clear cart
 function clearCart() {
-    cart = [];
-    saveCart();
-    displayCart();
-    updateCartCount();
+    if (cart.length === 0) return;
+
+    if (confirm("Are you sure you want to clear your cart?")) {
+        cart = [];
+        saveCart();
+        displayCart();
+        updateCartCount();
+    }
 }
 
 // Run when page loads
