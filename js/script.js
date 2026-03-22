@@ -1,12 +1,12 @@
-// Load cart from localStorage
+// load cart from localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// SAVE cart to localStorage
+// save cart to localStorage
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Add item to cart
+// add item to cart
 function addToCart(name, price) {
     cart.push({ name: name, price: price });
     saveCart();
@@ -14,7 +14,7 @@ function addToCart(name, price) {
     alert(name + " added to cart!");
 }
 
-// Update cart count in navbar
+// update cart count in navbar
 function updateCartCount() {
     let count = document.getElementById("cart-count");
     if (count) {
@@ -22,17 +22,17 @@ function updateCartCount() {
     }
 }
 
-// Go to cart page
+// go to cart page
 function viewCart() {
     window.location.href = "cart.html";
 }
 
-// Display items in cart page
+// display items in cart page
 function displayCart() {
     let cartItems = document.getElementById("cart-items");
     let totalPrice = document.getElementById("total-price");
 
-    // Stop if not on cart page
+    // stop if not on cart page
     if (!cartItems || !totalPrice) return;
 
     cartItems.innerHTML = "";
@@ -54,7 +54,7 @@ function displayCart() {
     totalPrice.innerText = "Total: UGX " + total;
 }
 
-// Clear cart
+// clear cart
 function clearCart() {
     cart = [];
     saveCart();
@@ -62,6 +62,42 @@ function clearCart() {
     updateCartCount();
 }
 
-// Run when page loads
+// place order via WhatsApp
+function placeOrder() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let location = document.getElementById("location").value;
+
+    if (!name || !phone || !location) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let message = "New Order:\n\n";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        message += `${item.name} - UGX ${item.price}\n`;
+        total += item.price;
+    });
+
+    message += `\nTotal: UGX ${total}\n\n`;
+    message += `Customer Name: ${name}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Location: ${location}`;
+
+    let whatsappNumber = "256780770671";
+
+    let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+}
+
+function goToCheckout() {
+    window.location.href = "checkout.html";
+}
+
+// run when page loads
 updateCartCount();
 displayCart();
