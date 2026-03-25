@@ -4,63 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Ai-Cha</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-
-<nav class="navbar navbar-light bg-light shadow-sm">
+    
+<!-- navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
   <div class="container">
     <a href="index.html" class="navbar-brand fw-bold">Ai-Cha 🍦</a>
+    <div class="d-flex gap-2">
+      <a href="cart.html" class="btn btn-outline-primary">
+        <i class="fas fa-arrow-left me-1"></i> Back to Cart
+      </a>
+      <button class="btn btn-success position-relative" onclick="viewCart()">
+        Cart 🛒 
+        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+      </button>
+    </div>
   </div>
 </nav>
 
+<!-- hero Section -->
+<section class="checkout-hero  text-center mt-5 py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-white mb-3">Secure Checkout 🧾</h1>
+        <p class="lead text-white-50">Complete your order for fast delivery</p>
+    </div>
+</section>
+
+<!-- checkout area -->
 <div class="container py-5">
-    <div class="col-md-6 mx-auto">
-
-        <h2 class="text-center mb-4">Checkout</h2>
-
-        <!-- customer form -->
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form id="checkout-form" class="p-4 shadow-lg bg-white rounded">
-
-                       <h4 class="mb-4 text-center">Customer Details</h4>
-
-                       <!-- name -->
-                         <div class="mb-3">
-                              <label for="name" class="form-label">Full Name</label>
-                              <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-                         </div>
-
-                      <!-- phone -->
-                       <div class="mb-3">
-                           <label for="phone" class="form-label">Phone Number</label>
-                           <input type="tel" id="phone" class="form-control" placeholder="e.g. 07XXXXXXXX" required>
-                      </div>
-
-                      <!-- location -->
-                      <div class="mb-4">
-                         <label for="location" class="form-label">Delivery Location</label>
-                         <input type="text" id="location" class="form-control" placeholder="e.g. Makerere, Wandegeya" required>
-                     </div>
-
-                     <!-- button -->
-                      <button type="button" class="btn btn-success w-100 py-2" onclick="placeOrder()">
-                         🧾 Place Order via WhatsApp
-                      </button>
-
-                   </form>
+    <div class="row">
+        <!-- Left column: Checkout form -->
+        <div class="col-lg-8">
+            <!-- information form -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body p-4">
+                    <h4 class="mb-4">Customer Information</h4>
+                    
+                    <form id="checkout-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="07XXXXXXXX" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="location" class="form-label">Delivery Location *</label>
+                            <input type="text" id="location" class="form-control" placeholder="e.g. Makerere, Wandegeya, Kikoni" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">Order Notes (Optional)</label>
+                            <textarea id="notes" class="form-control" rows="3" placeholder="Special instructions or delivery notes..."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- delivery options -->
+            <div class="card shadow-lg mb-4">
+                <div class="card-body p-4">
+                    <h4 class="mb-4">Delivery Options</h4>
+                    
+                    <div class="delivery-options">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="delivery" id="standard" value="standard" checked>
+                            <label class="form-check-label" for="standard">
+                                <strong>Standard Delivery</strong> - 30-45 mins
+                                <div class="text-muted small">UGX 2,000</div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="delivery" id="express" value="express">
+                            <label class="form-check-label" for="express">
+                                <strong>Express Delivery</strong> - 15-20 mins
+                                <div class="text-muted small">UGX 4,000</div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup">
+                            <label class="form-check-label" for="pickup">
+                                <strong>Pickup</strong> - Ready in 10 mins
+                                <div class="text-muted small">Free - Near Makerere</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right column: Order summary -->
+        <div class="col-lg-4">
+            <div class="order-summary sticky-top" style="top: 100px;">
+                <div class="card shadow-lg">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Order Summary</h4>
+                        
+                        <!-- price breakdown section -->
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">UGX 0</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Delivery:</span>
+                                <span id="delivery-cost">UGX 2,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Service:</span>
+                                <span id="service-charge">UGX 500</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold fs-5">
+                                <span>Total:</span>
+                                <span id="total-price" class="text-success">UGX 0</span>
+                            </div>
+                        </div>
+        
+                        <button type="button" class="btn btn-success btn-lg w-100" onclick="placeOrder()" id="place-order-btn">
+                            <i class="fab fa-whatsapp me-2"></i>Place Order via WhatsApp
+                        </button>
+                        
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-lock me-1"></i>
+                                Secure checkout powered by WhatsApp
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- customer support card -->
+                <div class="card shadow-sm mt-3">
+                    <div class="card-body text-center p-3">
+                        <h6 class="mb-2">Need Help?</h6>
+                        <p class="small text-muted mb-2">Call us for assistance</p>
+                        <a href="tel:+256700000000" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-phone me-1"></i>+256 700 000 000
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="js/script.js"></script>
+<!-- footer -->
+<footer class="footer-section text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <h5 class="fw-bold mb-3">Ai-Cha 🍦</h5>
+                <p class="text-white-50">Your premium destination for boba tea, ice cream, and coffee.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="text-white me-3">📘</a>
+                    <a href="#" class="text-white me-3">📷</a>
+                    <a href="#" class="text-white">🐦</a>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="index.html" class="text-white-50">Home</a></li>
+                    <li class="mb-2"><a href="menu.html" class="text-white-50">Menu</a></li>
+                    <li><a href="cart.html" class="text-white-50">Cart</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <h5 class="fw-bold mb-3">Contact</h5>
+                <p class="text-white-50 mb-2">📍 Near Makerere University</p>
+                <p class="text-white-50 mb-2">📞 +256 700 000 000</p>
+                <p class="text-white-50">✉️ info@aicha.ug</p>
+            </div>
+        </div>
+        <hr class="border-white-50 my-4">
+        <div class="text-center">
+            <small class="text-white-50"> {{ 2026 }} Ai-Cha | Ice Cream • Boba • Coffee ☕</small>
+        </div>
+    </div>
+</footer>
 
+<!-- toast notification -->
+<div id="toast-container"></div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
