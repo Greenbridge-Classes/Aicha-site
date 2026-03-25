@@ -70,6 +70,14 @@ function displayCart() {
     totalPrice.innerText = "Total: UGX " + total;
 }
 
+// Remove single item
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    displayCart();
+    updateCartCount();
+}
+
 // Clear cart
 function clearCart() {
     if (cart.length === 0) return;
